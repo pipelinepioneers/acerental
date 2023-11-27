@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ppioneer
+spec:
+  selector:
+    matchLabels:
+      app: ppioneer
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ppioneer
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: ppioneer
+        resources:
+          limits:
+            cpu: 100m
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          name: ppioneer
+
